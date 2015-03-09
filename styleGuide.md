@@ -9,7 +9,7 @@ This section covers syntax that can be applied to a wide variety of scripting an
 
 - #1 rule: Be consistent.
 - Do your best to continue using the style in which a project was originally written. 
-- For strongly opinionated styled languages, like Go, prioritize their style.  
+- For languages like Go, use the standard tooling for formatting which would be go fmt in this case. 
 - If you still think it best to change the style of an existing project, try to make the style changes to the whole project.  Under the extraordinary circumstance that is not reasonably possible keep your style changes to limited to specific files and leaves comments explaining your reasoning.  
 - Don't be the cause of unneeded mixed styles.  
 - When using a framework, using an alternative style is permitted as long as there is a clear distinction where the framework ends and your work begins.  
