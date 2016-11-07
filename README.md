@@ -8,18 +8,17 @@ This section covers syntax that can be applied to a wide variety of scripting an
 **General Rules:**
 
 - #1 rule: Be consistent.
-- Do your best to continue using the style in which a project was originally written. 
-- For languages like Go, use the standard tooling for formatting which would be go fmt in this case. 
+- Do your best to continue using the style in which a project was originally written.
+- For languages like Go, use the standard tooling for formatting which would be go fmt in this case.
 - If you still think it best to change the style of an existing project, try to make the style changes to the whole project.  Under the extraordinary circumstance that is not reasonably possible keep your style changes to limited to specific files and leaves comments explaining your reasoning.  
 - Don't be the cause of unneeded mixed styles.  
 - When using a framework, using an alternative style is permitted as long as there is a clear distinction where the framework ends and your work begins.  
-
 
 ###Formatting
 ####White Space
 White space is usually good and should be used to make code more readable.  
 
-Typically, two lines between function/methods, one line in between blocks of code as desired.  
+Typically, one line between function/methods, one line in between blocks of code as desired.  
 
 ####Optional formatting
 Braces and semicolons are required where optional.  
@@ -45,7 +44,7 @@ Acceptable:
     if( true ){
         return true;
     }
-    
+
 Acceptable:
 
     if ( true ) { return true; }
@@ -87,7 +86,7 @@ Acceptible:
 
 Acceptible:
 
-    if(thatIsTrue 
+    if(thatIsTrue
     	&& thisIsTrue
     	|| thisAndThat)
     {
@@ -96,22 +95,25 @@ Acceptible:
     	return false;
     }
 
-###Naming and Casing
-Avoid underscores and dashes.  Underscores are only permitted when writing in all uppercase or the language is case insensitive (like PL SQL). Never use dashes unless absolutely necessary.  
-
-Never reuse names, even when cased differently. All things should be uniquely regardless of case.  
+### Naming and Casing
+- Like java, use camel case and upper camel case.  
+- Avoid underscores except when names are end user facing.  Underscores are also permitted when writing in all uppercase or the language is case insensitive (like PL SQL).
+- Never use dashes unless absolutely necessary.  
+- Never reuse names, even when cased differently. All things should be uniquely regardless of case.  
 
 Wrong:
 
     var One = 1;
     var oNe = 1;
     var OnE = 1;
+    https://example.com/billy-bob
 
 Correct:
 
     var i = 1;
     var gamePoints = 1;
     var newPersons = 1;
+    https://example.com/billy_bob
 
 ####Casing
 **Casing** should always be **camel casing**.  Classes, and things like classes, should always be upper camel case (Pascal case) and begin with a capital letter.  If classes are saved to a file, the file should have the same name as the class.
@@ -146,7 +148,7 @@ When possible always program database logic into the database instead of applica
 ###Table and Column Naming and Casing
 Don't use a prefix for table native columns.  For example, in a `users` table a `password` column should not be prefixed with table information.  Some sort of prefix may be ideal when referring to foreign keys.
 
-Tables should be plural and native columns should be singular.  The exception is for foreign keys, which should be plural to signify that they are a foreign key.  
+Tables should be plural and native columns should be singular (see http://stackoverflow.com/a/338606/1923095 for a nice explanation).  The exception is for foreign keys, which should be plural to signify that they are a foreign key.  
 
 Table names and columns are considered to be all in the same case.  Do no use camel casing and use underscores to separate words.  
 
@@ -183,5 +185,3 @@ Wrong:
  - **id** - System generated, auto incrementing integer primary key
  - **updated** - Datetime of the last update to the field.   
  - **created** - Datetime of when the record was created.  
- 
-
