@@ -356,4 +356,20 @@ Exportable Javascript functions variables should be JS doc'ed
 
 ## JS Doc
 Use lower case names for Javascript build in types.  
+Don't use preceding ` * ` on lines.  It is excessively silly to use block
+comments with escaping for each line.  
+
+#### Example
+
+
+``javascript
+/**
+isEmpty is a helper function to determine if thing is empty. 
+@param   {any}     thing    Thing you wish was empty.  
+@returns {boolean}          Boolean.  
+*/
+function isEmpty(thing) {
+	...
+}
+```
 
