@@ -194,12 +194,18 @@ Things like functions, methods, and variable names should be lower camel case.
 Constants and/or globals may be be ALL CAPS and underscores should be used to
 break up words.
 
-Packages should be all lowercase with no underscores or dashes. If names are
-long consider subpackages in a Go-like fashion using subdirectories to organize
-your code.
+Local package directories should be all lower snake case (e.g. coze_cli).
+Github/other hosted repositories are upper CamelCase (e.g. CozeCLI).  Acronyms
+should be in one case, all upper or lower.  For example, for Ed25519, "Ed" is
+not an acronym while for CozeCLI "CLI" is an acronym.  
+
+If names are long consider subpackages in a Go-like fashion using subdirectories
+to organize your code.
 
 Avoid [Hungarian notation](https://en.wikipedia.org/wiki/Hungarian_notation) and
-references to types in typed languages.  
+references to types in typed languages.  For Javascript, use JSDoc for types.  
+
+
 
 ### Encoding
 
@@ -271,7 +277,7 @@ Example:
  kitty_128.png
  kitty_256.png
 ```
-
+ 
 # Testing
 
 **Golden values** are static test values used to compare against test results.
@@ -295,13 +301,13 @@ exception is for **foreign keys, which should be plural to signify that they are
 a foreign key.**
 
 Table names and columns are considered to be all in the same case. Do no use
-camel casing. Use snake case (underscores) to separate words.
+camel casing. Use lower snake case (underscores) to separate words.
 
 Try to avoid putting too many tables in a single schema or database. If a table
 "prefix" appears necessary to avoid confusion with like named tables, it it most
 likely ideal to split out the tables into many databases/schemas.
 
-The datatypes should not be included in names unless for documented technical
+Data types should not be included in names unless for documented technical
 reasons.
 
 Avoid abbreviations. If a well known acronym is not available and no other
@@ -336,12 +342,13 @@ datetime2_created
 updatedtds
 ```
 
+Table names like "user_address" are okay for **junctions tables**.
+
 ## Standard Column Names
 
 - **id** - Primary key.  Serial integer or random string.  
 - time or created - Datetime of when the record was created.  Ideally Unix time.  
 - updated - Datetime of the last update to the field.
-
 
 
 # Terminology
@@ -352,17 +359,55 @@ Your login is your credentials for log in.
 
 
 # Javascript
-Exportable Javascript functions variables should be JS doc'ed
+General:
+- Omit ending `;`.  As of newer versions, it is not needed. 
+- Exported Javascript functions variables should be JS doc'ed.  Most functions
+  and types should be JS doc'ed.
+- Non-HTML javascript variables should be defined by JSDoc and not denote types.
+- Use lower camelCase for non-exported Javascript variables and upper CamelCase
+  for exported variables.
+
+## HTML elements selected into JS variables
+HTML ID's should be lower camelCase.  
+
+For these HTML elements, append the following to ID's and names.  For example,
+`homeBtn` or `nameInput`.  After selecting the HTML element into a Javascript
+variable, the Javascript variable name should match the HTML ID.  
+
+```
+- Elem      HTML Element
+- Btn       HTML Button
+- Input     HTML Input and Text Area
+- Chk       HTML Checkbox
+- Select    HTML Select
+- Modal     Modal (Like Bootstrap Modal)
+- Tmpl      HTML template (Pre-cloned, post-clone can be named whatever)
+```
+
+In lieu on "Elem", specific HTML tag, like "Div" or "Li", may be used.  
 
 ## JS Doc
-Use lower case names for Javascript build in types.  
-Don't use preceding ` * ` on lines.  It is excessively silly to use block
-comments with escaping for each line.  
+JS Doc has many bugs.  We document them as we go in `typedef.js`
 
-#### Example
+Use lower case names for Javascript build in types.  Don't use preceding ` * `
+on lines.  It is excessively silly to use line escaping for block comments.  We
+prefer using the function name as the first word in the function documentation
+as is convention in Go.  
+
+### Example JS Doc
+
+```js
+export { Bob }
+
+/**
+Bob creates a bob.  
+@returns {void}
+*/
+function Bob(){
+	...
+}
 
 
-``javascript
 /**
 isEmpty is a helper function to determine if thing is empty. 
 @param   {any}     thing    Thing you wish was empty.  
